@@ -39,6 +39,22 @@ export default class Model {
             this.tools.changeCanvasSize(imageToRedraw.width, imageToRedraw.height);
             //resize canvas to match image size
             this.context.drawImage(imageToRedraw, 0, 0);
+            //draw image on canvas
         }
+    }
+
+    redoAction(){
+        if(this.undo_index + 1 >= this.undo_list.length){
+            return;
+            //check if redo index is out of bounds
+        }
+        this.undo_index++;
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        //clear canvas
+        let imageToRedraw = this.undo_list[this.undo_index];
+        this.tools.changeCanvasSize(imageToRedraw.width, imageToRedraw.height);
+        //resize canvas to match image size
+        this.context.drawImage(imageToRedraw, 0, 0);
+        //draw image on canvas
     }
 }

@@ -25,6 +25,13 @@ export default class Tools {
             console.log("undo button clicked");
         });
         //Add event listener to undo button
+
+        var redoButton = document.querySelector("#redo_button");
+        redoButton.addEventListener("click", (event) =>{
+            this.controls.redoAction();
+            console.log("redo button clicked");
+        });
+        //Add event listener to redo button
         this.canvas = document.querySelector("#drawing_canvas");
     }
 

@@ -57,4 +57,8 @@ export default class Controls {
     undoAction(){
         this.model.undoAction();
     }
+
+    redoAction(){
+        this.model.redoAction();
+    }
 }
