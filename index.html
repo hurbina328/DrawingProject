@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    </head>
+      
+    <body>
+        <div id="container">     
+            <div id="tools_container">
+            <button id="open_file_button">
+                <i class="bi-image"></i>
+            </button>
+            <button id="save_file_button">
+                <i class="bi-save"></i>
+            </button>
+            <button id="undo_button">
+                <i class="bi-arrow-counterclockwise"></i>
+            </button>
+            <button id="redo_button">
+                <i class="bi-arrow-clockwise"></i>
+            </button>
+            <button id="freehand_draw_button">
+                <i class="bi-pencil"></i>
+            </button>
+            <button id="line_button">
+                <i class="bi-dash"></i>
+            </button>
+            <button id="rectangle_button">
+                <i class="bi-square"></i>
+            </button>
+            <button id="filled_rectangle_button">
+                <i class="bi-square-fill"></i>
+            </button>
+            <button id="circle_button">
+                <i class="bi-circle"></i>
+            </button>
+            <button id="filled_circle_button">
+                <i class="bi-circle-fill"></i>
+            </button>
+            </div>
+            
+            <div id="canvas_container">
+                <canvas id="drawing_canvas" width="950" height="950">
+                    
+                </canvas>
+            </div>
+        </div>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

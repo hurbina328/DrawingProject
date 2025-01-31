@@ -1,0 +1,16 @@
+button{
+    display: block;
+    font-size: 3rem;
+  }
+  #tools_container{
+    position: absolute;
+  }
+  #canvas_container{
+    position: absolute;
+    left: 75px;
+  }
+  
+  canvas{
+    border: 5px solid black;
+    
+  }
