@@ -61,4 +61,28 @@ export default class Controls {
     redoAction(){
         this.model.redoAction();
     }
+
+    setFreehandDrawingMode(){
+        this.mode = "freehand";
+    }
+
+    mouseDown(event, canvas){
+        this.rect = canvas.getBoundingClientRect();
+        //get coordinates of canvas
+
+        this.canvasX = event.clientX - this.rect.left;
+        //position where mouse was when clicked x -axis
+
+        this.canvasY = event.clientY - this.rect.top;
+        //position where mouse was when clicked y- axis
+        if(this.mode == "freehand"){
+            this.tools.startFreehandDrawing(this.canvasX, this.canvasY);
+            //pass x and y coords
+        }
+    }
+
+    mouseMove(event){
+        if(this.mode === "freehand")
+            this.tools.continueFreehandDrawing(event.clientX - this.rect.left, event.clientY - this.rect.top);
+    }
 }

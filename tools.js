@@ -32,7 +32,30 @@ export default class Tools {
             console.log("redo button clicked");
         });
         //Add event listener to redo button
+        var freeHandDrawingButton = document.querySelector("#freehand_draw_button");
+        freeHandDrawingButton.addEventListener("click", (event) =>{
+            this.setFreehandDrawingMode();
+            console.log("free hand drawing button clicked");
+        });
+
+
+        //Add event listener to free hand drawing button
         this.canvas = document.querySelector("#drawing_canvas");
+
+        this.context = this.canvas.getContext("2d");
+        //Get canvas and context to write on
+
+        this.canvas.addEventListener("mousedown", (event) => {
+            controls.mouseDown(event, this.canvas);
+
+            window.addEventListener("mousemove", mouseMove);
+            //listens mouse movement but only when mouse is pressed
+        });
+        //mouse pressed or held down
+        function mouseMove(event){
+            controls.mouseMove(event);
+        }
+
     }
 
     changeCanvasSize(imageWidth, imageHeight){
@@ -40,5 +63,26 @@ export default class Tools {
         this.canvas.setAttribute("height", imageHeight);
         console.log(this.canvas.width, this.canvas.height);
         //Reszize canvas to match image size
+    }
+
+    startFreehandDrawing(x, y){
+        let currentContext = this.context;
+
+        currentContext.beginPath();
+        //starting path for drawing
+        currentContext.moveTo(x, y);
+        //move to beginning mouse position
+    }
+
+    continueFreehandDrawing(x, y){
+        let currentContext = this.context;
+
+        currentContext.lineTo(x, y);
+        //draw line to current mouse position
+        currentContext.stroke();
+        //draw line on canvas
+        currentContext.beginPath();
+        currentContext.moveTo(x, y);
+        //bring path to line
     }
 }
