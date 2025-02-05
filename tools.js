@@ -34,6 +34,8 @@ export default class Tools {
         //Add event listener to redo button
         var freeHandDrawingButton = document.querySelector("#freehand_draw_button");
         freeHandDrawingButton.addEventListener("click", (event) =>{
+            this.highlightSelectedTool(freeHandDrawingButton);
+            //highlight selected tool
             this.controls.setFreehandDrawingMode();
             console.log("free hand drawing button clicked");
         });
@@ -67,6 +69,16 @@ export default class Tools {
             //stop listening to mouse movement
         }
         //mouse released
+        this.previousSelectedTool = null;
+    }
+    
+    highlightSelectedTool(selectedTool){
+        selectedTool.style.background = 'darkorange';
+
+        if (this.previousSelectedTool){
+            this.previousSelectedTool.style.background = 'white';
+        }
+        this.previousSelectedTool = selectedTool;
     }
 
     changeCanvasSize(imageWidth, imageHeight){
