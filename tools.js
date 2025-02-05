@@ -34,7 +34,7 @@ export default class Tools {
         //Add event listener to redo button
         var freeHandDrawingButton = document.querySelector("#freehand_draw_button");
         freeHandDrawingButton.addEventListener("click", (event) =>{
-            this.setFreehandDrawingMode();
+            this.controls.setFreehandDrawingMode();
             console.log("free hand drawing button clicked");
         });
 
@@ -50,12 +50,23 @@ export default class Tools {
 
             window.addEventListener("mousemove", mouseMove);
             //listens mouse movement but only when mouse is pressed
+
+            window.addEventListener("mouseup", mouseUp);
+            //mouse released
         });
         //mouse pressed or held down
         function mouseMove(event){
             controls.mouseMove(event);
         }
 
+        let mouseUp = (event)=>{
+            controls.mouseUp(this.canvas);
+
+            window.removeEventListener("mousemove", mouseMove);
+            window.removeEventListener("mouseup", mouseUp);
+            //stop listening to mouse movement
+        }
+        //mouse released
     }
 
     changeCanvasSize(imageWidth, imageHeight){

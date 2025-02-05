@@ -57,4 +57,15 @@ export default class Model {
         this.context.drawImage(imageToRedraw, 0, 0);
         //draw image on canvas
     }
+
+    createImage(imageToDraw){
+        this.context.drawImage(imageToDraw, 0, 0);
+        let imageElement = document.createElement("img");
+
+        imageElement.src = this.canvas.toDataURL("image/png");
+
+        this.undo_index++;
+        this.undo_list[this.undo_index] = imageElement;
+        //add to undo list after current image
+    }
 }

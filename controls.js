@@ -85,4 +85,8 @@ export default class Controls {
         if(this.mode === "freehand")
             this.tools.continueFreehandDrawing(event.clientX - this.rect.left, event.clientY - this.rect.top);
     }
+
+    mouseUp(canvas){
+        this.model.createImage(canvas);
+    }
 }
