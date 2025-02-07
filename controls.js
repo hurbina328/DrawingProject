@@ -65,6 +65,10 @@ export default class Controls {
     setFreehandDrawingMode(){
         this.mode = "freehand";
     }
+    
+    setLineMode(){
+        this.mode = "line";
+    }
 
     mouseDown(event, canvas){
         this.rect = canvas.getBoundingClientRect();
@@ -75,15 +79,23 @@ export default class Controls {
 
         this.canvasY = event.clientY - this.rect.top;
         //position where mouse was when clicked y- axis
-        if(this.mode == "freehand"){
+        if(this.mode === "freehand"){
             this.tools.startFreehandDrawing(this.canvasX, this.canvasY);
             //pass x and y coords
         }
     }
 
     mouseMove(event){
-        if(this.mode === "freehand")
+        if(this.mode === "freehand"){
             this.tools.continueFreehandDrawing(event.clientX - this.rect.left, event.clientY - this.rect.top);
+        }
+        else if(this.mode === "line"){
+            let endingX = event.clientX - this.rect.left;
+            let endingY = event.clientY - this.rect.top;
+            //grabs x and y coordinates of mouse when mouse is moving
+
+            this.tools.drawLine(this.canvasX, this.canvasY, endingX, endingY);
+        }  
     }
 
     mouseUp(canvas){

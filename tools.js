@@ -40,6 +40,13 @@ export default class Tools {
             console.log("free hand drawing button clicked");
         });
 
+        var lineButton = document.querySelector("#line_button");
+        lineButton.addEventListener("click", (event) =>{
+            this.highlightSelectedTool(lineButton);
+            //highlight selected tool
+            this.controls.setLineMode();
+            
+        });
 
         //Add event listener to free hand drawing button
         this.canvas = document.querySelector("#drawing_canvas");
@@ -107,5 +114,16 @@ export default class Tools {
         currentContext.beginPath();
         currentContext.moveTo(x, y);
         //bring path to line
+    }
+    drawLine(startingX, startingY, endingX, endingY){
+        let currentContext = this.context;
+        
+        currentContext.beginPath();
+
+        currentContext.moveTo(startingX, startingY);
+        //move to beginning mouse position
+        currentContext.lineTo(endingX, endingY);
+        //draw line to current mouse position
+        currentContext.stroke();
     }
 }
